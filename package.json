@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "react-server index.js"
+  },
+  "devDependencies": {
+    "@quarterto/react-server": "^1.5.2"
+  },
+  "dependencies": {
+    "@quarterto/boulevard-promise-server": "^1.0.0",
+    "pouchdb": "^5.1.0",
+    "react": "^0.14.6"
+  }
+}
