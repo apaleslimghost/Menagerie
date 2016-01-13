@@ -3,10 +3,14 @@
     "start": "react-server index.js"
   },
   "devDependencies": {
-    "@quarterto/react-server": "^1.5.2"
+    "@quarterto/react-server": "^1.5.3"
   },
   "dependencies": {
     "@quarterto/boulevard-promise-server": "^1.0.0",
+    "express": "^4.13.3",
+    "express-pouchdb": "^1.0.1",
+    "memdown": "^1.1.0",
+    "morgan": "^1.6.1",
     "pouchdb": "^5.1.0",
     "react": "^0.14.6"
   }
