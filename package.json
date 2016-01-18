@@ -7,11 +7,13 @@
   },
   "dependencies": {
     "@quarterto/boulevard-promise-server": "^1.0.0",
+    "@quarterto/express-cors-wide-open": "^1.0.0",
+    "@quarterto/options-204": "^1.0.0",
     "express": "^4.13.3",
     "express-pouchdb": "^1.0.1",
     "memdown": "^1.1.0",
     "morgan": "^1.6.1",
-    "pouchdb": "^5.1.0",
+    "pouchdb": "^5.2.0",
     "react": "^0.14.6"
   }
 }
