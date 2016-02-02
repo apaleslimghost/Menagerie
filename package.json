@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "start": "react-server index.js"
+    "start": "babel-node server.js"
   },
   "devDependencies": {
-    "@quarterto/react-server": "^1.5.3"
+    "@quarterto/promise-server": "^1.16.0",
+    "@quarterto/react-server": "^1.5.3",
+    "babel": "^5.8.35"
   },
   "dependencies": {
     "@quarterto/boulevard-promise-server": "^1.0.0",

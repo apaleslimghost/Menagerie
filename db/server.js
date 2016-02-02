@@ -11,8 +11,8 @@ var MemPouch = PouchDB.defaults({db: memdown});
 var app = express();
 app.use(morgan('dev'));
 app.use(wideOpen);
-app.use(options204);;
+app.use(options204);
 app.use(expressPouchDB(MemPouch));
-app.listen(3001, console.log.bind(console, 'database listening on 3001'));
 
 export default MemPouch;
+export {app as dbServer};
