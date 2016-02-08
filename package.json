@@ -11,10 +11,14 @@
     "@quarterto/boulevard-promise-server": "^1.0.0",
     "@quarterto/express-cors-wide-open": "^1.0.0",
     "@quarterto/options-204": "^1.0.0",
+    "@quarterto/promisify": "^1.0.0",
+    "csv-parse": "^1.0.1",
     "express": "^4.13.3",
     "express-pouchdb": "^1.0.1",
+    "lodash.mapvalues": "^4.0.1",
     "memdown": "^1.1.0",
     "morgan": "^1.6.1",
+    "param-case": "^1.1.2",
     "pouchdb": "^5.2.0",
     "react": "^0.14.6"
   }

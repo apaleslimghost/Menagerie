@@ -1,1 +1,4 @@
-export {lists, spells} from './base';
+import {lists, spells} from './base';
+import loadSpells from '../load-spells';
+
+export {lists, spells};
