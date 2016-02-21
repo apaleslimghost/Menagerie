@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "start": "webpack-dev-server --inline --hot index.jsx"
+    "start": "babel-node server"
   },
   "devDependencies": {
     "babel": "^6.5.2",
+    "babel-cli": "^6.5.1",
     "babel-loader": "^6.2.3",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
@@ -13,6 +14,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "lodash.map": "^4.2.0",
+    "lodash.mapkeys": "^4.2.0",
     "lodash.mapvalues": "^4.0.1",
     "param-case": "^1.1.2",
     "react": "^0.14.6",

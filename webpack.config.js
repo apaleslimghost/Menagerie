@@ -1,4 +1,6 @@
-module.exports = {
+import webpack from 'webpack';
+
+export default {
 	module: {
 		loaders: [
 			{
@@ -6,7 +8,6 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'babel',
 				query: {
-					presets: ['react', 'es2015', 'react-hmre']
 				}
 			},
 			{
@@ -15,14 +16,18 @@ module.exports = {
 			}
 		]
 	},
-	entry: {
-		app: ['./index.jsx']
-	},
+	entry: [
+		'webpack-dev-server/client?http://localhost:3000',
+		'webpack/hot/only-dev-server',
+		'./index.jsx'
+	],
 	output: {
-		path: './build',
-		filename: "bundle.js"
+		path: require('path').resolve('build'),
+		filename: 'bundle.js',
+		publicPath: '/static/'
 	},
-	devServer: {
-		historyApiFallback: true
-	}
+	plugins: [
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin()
+	],
 };
