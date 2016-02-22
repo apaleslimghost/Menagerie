@@ -1,0 +1,1 @@
+export spellsFilter from './filter';
