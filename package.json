@@ -16,7 +16,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "@quarterto/fuzzy": "^1.6.0",
     "@quarterto/subseq": "^1.0.0",
+    "fuzzy": "^0.1.1",
     "lodash.filter": "^4.2.0",
     "lodash.first": "^3.0.0",
     "lodash.last": "^3.0.0",

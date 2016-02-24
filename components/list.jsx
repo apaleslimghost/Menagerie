@@ -7,7 +7,8 @@ class List extends React.Component {
 		let {spells} = this.props;
 		return <ul>{map(spells, spell => <li key={spell.id}>
 			<Link to={`/spell/${spell.id}`}>
-				{spell.name} {spell.level}
+				{spell.match ? <div>{spell.match.prefix}<b>{spell.match.match}</b>{spell.match.suffix}</div> : spell.name}
+				{spell.match && spell.match.score}
 			</Link>
 		</li>)}
 		</ul>;
