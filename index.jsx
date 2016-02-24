@@ -7,7 +7,7 @@ import {syncHistory, routeReducer} from 'react-router-redux';
 
 import * as reducers from './reducers';
 
-import SpellCard from './components/spellcard.jsx';
+import SpellPage from './components/spellpage.jsx';
 import List from './components/list.jsx';
 
 import spells from './spells';
@@ -25,12 +25,6 @@ const store = createStore(
 );
 
 const withProps = (Component, moreProps) => props => <Component {...moreProps} {...props} />;
-
-class SpellPage extends React.Component {
-	render() {
-		return <SpellCard spell={this.props.spells[this.props.params.spellid]} />;
-	}
-}
 
 ReactDOM.render(
 	<Provider store={store}>
