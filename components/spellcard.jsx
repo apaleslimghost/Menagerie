@@ -5,7 +5,8 @@ class SpellCard extends React.Component {
 	render() {
 		return <article>
 			<h1>{this.props.spell.name}</h1>
-			<Link to="/">back</Link>
+			<p>{this.props.spell['original-description']}</p>
+			<Link to="/all-spells">back</Link>
 		</article>;
 	}
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
-import {Provider} from 'react-redux'
+import {Provider} from 'react-redux';
 import {syncHistory, routeReducer} from 'react-router-redux';
 
 import * as reducers from './reducers';
@@ -30,6 +30,7 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/all-spells" component={withProps(List, {spells})}/>
+			<Route path="/spell/:spellid" component={props => <SpellCard spell={spells[props.params.spellid]}/>}/>
 		</Router>
 	</Provider>,
 	document.querySelector('main')
