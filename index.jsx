@@ -26,11 +26,17 @@ const store = createStore(
 
 const withProps = (Component, moreProps) => props => <Component {...moreProps} {...props} />;
 
+class SpellPage extends React.Component {
+	render() {
+		return <SpellCard spell={this.props.spells[this.props.params.spellid]} />;
+	}
+}
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={browserHistory}>
 			<Route path="/all-spells" component={withProps(List, {spells})}/>
-			<Route path="/spell/:spellid" component={props => <SpellCard spell={spells[props.params.spellid]}/>}/>
+			<Route path="/spell/:spellid" component={withProps(SpellPage, {spells})}/>
 		</Router>
 	</Provider>,
 	document.querySelector('main')
