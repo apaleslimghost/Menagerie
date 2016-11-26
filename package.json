@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@quarterto/fuzzy": "^1.6.0",
-    "@quarterto/hot-render": "^1.0.0",
+    "@quarterto/hot-render": "^1.2.0",
     "@quarterto/subseq": "^1.0.0",
     "fuzzy": "^0.1.1",
     "lodash.filter": "^4.2.0",
@@ -28,6 +28,7 @@
     "lodash.mapkeys": "^4.2.0",
     "lodash.mapvalues": "^4.0.1",
     "lodash.sortby": "^4.2.0",
+    "markdown": "^0.5.0",
     "param-case": "^1.1.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.7",
