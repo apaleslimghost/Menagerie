@@ -9,7 +9,8 @@ padding: 0;
 `;
 const Item = styled.li`
 display: inline-block;
-margin-bottom: 1rem;
+margin: 0 1rem 1rem 0;
+vertical-align: top;
 `;
 
 const SpellList = ({spells, remove}) => <List>
