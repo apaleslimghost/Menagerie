@@ -134,6 +134,21 @@ const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
 			<dt>Challenge</dt>
 			<dd>{monster.challenge_rating} ({crToXP[monster.challenge_rating]}XP)</dd>
 		</dl>
+
+		{monster.special_abilities && <dl>{monster.special_abilities.map(ability =>
+			<div>
+				<dt>{ability.name}</dt>
+				<dd>{ability.desc}</dd>
+			</div>
+		)}</dl>}
+
+		<h4>Actions</h4>
+		<dl>{monster.actions.map(action =>
+			<div>
+				<dt>{action.name}</dt>
+				<dd>{action.desc}</dd>
+			</div>
+		)}</dl>
 	</Card>
 </ThemeProvider>;
 
