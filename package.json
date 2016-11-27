@@ -19,6 +19,7 @@
   "dependencies": {
     "@quarterto/enviante-localstorage": "^1.2.0",
     "@quarterto/hot-render": "^1.2.0",
+    "contrast": "^1.0.1",
     "enviante": "^4.0.0",
     "enviante-react": "^1.0.1",
     "lodash.filter": "^4.2.0",

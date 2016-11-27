@@ -56,10 +56,10 @@ const ColumnWrapper = styled.div``;
 
 const ListColumn = styled.div`
 padding: 1em;
-width: ${({width}) => `${100 * width}vw`};
-float: left;
 
 @media screen {
+	float: left;
+	width: ${({width}) => `${100 * width}vw`};
 	height: 100vh;
 	overflow-y: auto;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Title, Card, Subtitle} from './styled.jsx';
 import styled, {ThemeProvider} from 'styled-components';
+import Markdown from './markdown.jsx';
 import {redCard} from './themes';
 
 const modifier = stat => Math.floor((stat - 10) / 2);
@@ -94,61 +95,173 @@ const crToXP = {
 	'30': 155000,
 };
 
+const Crunch = styled.dl`
+display: block;
+margin-bottom: 1em;
+
+dd, dt {
+	display: inline;
+}
+
+dt {
+	font-weight: bold;
+
+	&:after {
+		content: ': ';
+	}
+}
+
+dd {
+	margin: 0;
+}
+`;
+
+const Ability = styled.div`
+font-size: .8em;
+margin-bottom: .5em;
+
+dd, dt {
+	display: inline;
+}
+
+dt {
+	font-weight: bold;
+	font-style: italic;
+
+	&:after {
+		content: '. ';
+	}
+}
+
+dd {
+	margin: 0;
+
+	> div {
+		display: inline;
+
+		> p:first-child {
+			display: inline;
+		}
+	}
+}
+
+ul {
+	margin-top: 1em;
+	padding-left: 2em;
+	list-style-type: initial;
+}
+`;
+
+const Stats = styled.dl`
+display: flex;
+margin: 1em 0;
+`;
+
+const StatWrapper = styled.div`
+width: 16%;
+text-align: center;
+`;
+
+const Modifier = styled.dd`
+margin: 0;
+`;
+
+const CardBody = styled.div`
+display: flex;
+padding: .5em;
+`;
+
+const Column = styled.div`
+width: 50%;
+
+&:first-child {
+	border-right: 1px ${({theme}) => theme.main} solid;
+	padding-right: 1em;
+	margin-right: 1em;
+}
+`;
+
+const Heading = styled.h4`
+margin: 0;
+`;
+
 const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
 	<Card>
 		<Title>{monster.name}</Title>
 		<Subtitle>{monster.size} {monster.type}, {monster.alignment}</Subtitle>
-		<dl>
-			<dt>Armour Class</dt>
-			<dd>{monster.armor_class}</dd>
-			<dt>Hit Points</dt>
-			<dd>{monster.hit_points} ({monster.hit_dice})</dd>
-			<dt>Speed</dt>
-			<dd>{monster.speed}</dd>
-		</dl>
+		<CardBody>
+			<Column>
+				<Crunch>
+					<div>
+						<dt>Armour Class</dt>
+						<dd>{monster.armor_class}</dd>
+					</div>
+					<div>
+						<dt>Hit Points</dt>
+						<dd>{monster.hit_points} ({monster.hit_dice})</dd>
+					</div>
+					<div>
+						<dt>Speed</dt>
+						<dd>{monster.speed}</dd>
+					</div>
+				</Crunch>
 
-		<dl>
-			{stats.map(stat => <div key={stat}>
-				<Stat>{abbreviateStat(stat)}</Stat>
-				<dd>{monster[stat]} ({mod(monster[stat])})</dd>
-			</div>)}
-		</dl>
+				<Stats>
+					{stats.map(stat => <StatWrapper key={stat}>
+						<Stat>{abbreviateStat(stat)}</Stat>
+						<Modifier>{monster[stat]} ({mod(monster[stat])})</Modifier>
+					</StatWrapper>)}
+				</Stats>
 
-		<dl>
-			{renderSaves(monster) && <div>
-				<dt>Saving throws</dt>
-				<dd>{renderSaves(monster)}</dd>
-			</div>}
-			{renderSkills(monster) && <div>
-				<dt>Skills</dt>
-				<dd>{renderSkills(monster)}</dd>
-			</div>}
-			{monster.senses && <div>
-				<dt>Senses</dt>
-				<dd>{monster.senses}</dd>
-			</div>}
-			{monster.languages && <div>
-				<dt>Languages</dt>
-				<dd>{monster.languages}</dd>
-			</div>}
-			<dt>Challenge</dt>
-			<dd>{monster.challenge_rating} ({crToXP[monster.challenge_rating]}XP)</dd>
-		</dl>
+				<Crunch>
+					{renderSaves(monster) && <div>
+						<dt>Saving throws</dt>
+						<dd>{renderSaves(monster)}</dd>
+					</div>}
+					{renderSkills(monster) && <div>
+						<dt>Skills</dt>
+						<dd>{renderSkills(monster)}</dd>
+					</div>}
+					{monster.senses && <div>
+						<dt>Senses</dt>
+						<dd>{monster.senses}</dd>
+					</div>}
+					{monster.languages && <div>
+						<dt>Languages</dt>
+						<dd>{monster.languages}</dd>
+					</div>}
+					<div>
+						<dt>Challenge</dt>
+						<dd>{monster.challenge_rating} ({crToXP[monster.challenge_rating]}XP)</dd>
+					</div>
+				</Crunch>
 
-		{monster.special_abilities && <dl>{monster.special_abilities.map(ability =>
-			<div key={ability.name}>
-				<dt>{ability.name}</dt>
-				<dd>{ability.desc}</dd>
-			</div>
-		)}</dl>}
+				{monster.special_abilities && <dl>{monster.special_abilities.map(ability =>
+					<Ability key={ability.name}>
+						<dt>{ability.name}</dt>
+						<dd><Markdown text={ability.desc} /></dd>
+					</Ability>
+				)}</dl>}
+			</Column>
 
-		<h4>Actions</h4>
-		<dl>{monster.actions.map(action =>
-			<div key={action.name}>
-				<dt>{action.name}</dt>
-				<dd>{action.desc}</dd>
-			</div>
-		)}</dl>
+			<Column>
+				<Heading>Actions</Heading>
+				<dl>{monster.actions.map(action =>
+					<Ability key={action.name}>
+						<dt>{action.name}</dt>
+						<dd><Markdown text={action.desc} /></dd>
+					</Ability>
+				)}</dl>
+
+				{monster.legendary_actions && <Heading>Legendary Actions</Heading>}
+				{monster.legendary_actions && <dl>{monster.legendary_actions.map(action =>
+					<Ability key={action.name}>
+						<dt>{action.name}</dt>
+						<dd><Markdown text={action.desc} /></dd>
+					</Ability>
+				)}</dl>}
+			</Column>
+		</CardBody>
 	</Card>
 </ThemeProvider>;
 

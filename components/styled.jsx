@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import contrast from 'contrast';
 import Markdown from './markdown.jsx';
 
 export const DefinitionList = styled.dl`
@@ -71,6 +72,7 @@ margin: 0;
 text-align: center;
 font-size: .8rem;
 padding: .1rem;
+color: ${({theme}) => contrast(theme.main) === 'light' ? 'black' : 'white'};
 
 &:before {
 	content: '';
