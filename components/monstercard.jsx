@@ -136,7 +136,7 @@ const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
 		</dl>
 
 		{monster.special_abilities && <dl>{monster.special_abilities.map(ability =>
-			<div>
+			<div key={ability.name}>
 				<dt>{ability.name}</dt>
 				<dd>{ability.desc}</dd>
 			</div>
@@ -144,7 +144,7 @@ const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
 
 		<h4>Actions</h4>
 		<dl>{monster.actions.map(action =>
-			<div>
+			<div key={action.name}>
 				<dt>{action.name}</dt>
 				<dd>{action.desc}</dd>
 			</div>

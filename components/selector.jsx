@@ -92,7 +92,7 @@ const StyledTokenizer = styled(WrapTokenizer)`
 }
 `;
 
-const SelectorContainer = observe(({data, storeKey, placeholder}, {subscribe, dispatch}) => {
+const SelectorContainer = observe(({data, storeKey, placeholder, onRemove, onAdd}, {subscribe, dispatch}) => {
 	let tokenizer;
 	return <StyledTokenizer
 		onClick={() => tokenizer.focus()}
@@ -107,10 +107,18 @@ const SelectorContainer = observe(({data, storeKey, placeholder}, {subscribe, di
 			tokenizer.refs.typeahead.refs.entry.blur();
 			tokenizer.refs.typeahead.refs.entry.focus();
 			dispatch(storeKey, data => addUniq(data, item.id));
+
+			if(onAdd) {
+				onAdd(item);
+			}
 		}}
 		onTokenRemove={item => {
 			tokenizer.refs.typeahead.refs.entry.focus();
-			dispatch(storeKey, data => remove(data, item.id))
+			dispatch(storeKey, data => remove(data, item.id));
+
+			if(onRemove) {
+				onRemove(item);
+			}
 		}}
 	/>;
 });

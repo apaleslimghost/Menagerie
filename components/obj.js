@@ -4,7 +4,7 @@ export const notKeys = (keys, obj) => Object.keys(obj)
 .filter(key => !keys.includes(key))
 .map(get(obj));
 
-const asSet = fn => (arr, ...args) => {
+export const asSet = fn => (arr, ...args) => {
 	const set = new Set(arr);
 	fn(set, ...args);
 	return Array.from(set);
