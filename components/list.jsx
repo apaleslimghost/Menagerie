@@ -7,8 +7,7 @@ list-style: none;
 padding: 0;
 `;
 const Item = styled.li`
-display: inline-block;
-margin: 0 1rem 1rem 0;
+margin: 0 0 1rem;
 vertical-align: top;
 `;
 

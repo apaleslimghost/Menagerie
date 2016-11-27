@@ -52,7 +52,8 @@ export const Description = ({text}) => <DescriptionBody>
 </DescriptionBody>;
 
 export const Card = styled.article`
-max-width: 30em;
+display: inline-block;
+width: 100%;
 border: .4em solid ${({theme}) => theme.main};
 border-radius: .4em;
 `;
