@@ -10,6 +10,10 @@ const WrapTokenizer = (props) => <div className={props.className} onClick={props
 </div>;
 
 const StyledTokenizer = styled(WrapTokenizer)`
+@media print {
+	display: none;
+}
+
 .typeahead-tokenizer {
 	position: relative;
 	border: 1px solid #0003;
