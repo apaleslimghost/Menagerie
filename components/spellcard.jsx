@@ -24,7 +24,8 @@ const renderRange = ({range, 'target-area': targetArea}) =>
 	`${renderDistance(range)}${targetArea ? ` (${renderArea(targetArea)})` : ''}`
 
 const renderDuration = ({duration, concentration}) =>
-	duration.type === 'instant' ? 'Instant'
+	  duration.type === 'instant' ? 'Instant'
+	: duration.type === 'special' ? 'Special'
 	: `Up to ${renderTime(duration)}${concentration ? ' (concentration)' : ''}`;
 
 const ord = n => n + (({
@@ -33,10 +34,15 @@ const ord = n => n + (({
 	3: 'rd'
 })[n] || 'th');
 
+const renderLevelAndSchool = ({level, school}) =>
+	level > 0 ? `${ord(level)}-level ${school}`
+	: `${school} cantrip`
+
 class SpellCard extends React.Component {
 	render() {
 		return <article>
-			<h1>{this.props.spell.name}</h1>
+			<h2>{this.props.spell.name}</h2>
+			<h3>{renderLevelAndSchool(this.props.spell)}</h3>
 			<dl>
 				<dt>Casting Time</dt>
 				<dd>{renderTime(this.props.spell['casting-time'])}</dd>
@@ -47,12 +53,7 @@ class SpellCard extends React.Component {
 				<dt>Duration</dt>
 				<dd>{renderDuration(this.props.spell)}</dd>
 			</dl>
-			<p>
-				{this.props.spell.level > 0 ?
-					`${ord(this.props.spell.level)}-level ${this.props.spell.school}` :
-					`${this.props.spell.school} cantrip`
-				}
-			</p>
+
 			<Markdown text={this.props.spell['original-description']} />
 		</article>;
 	}
