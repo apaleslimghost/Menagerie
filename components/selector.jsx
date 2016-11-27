@@ -16,6 +16,7 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	border-radius: 3px;
 	padding: .2rem;
 	cursor: text;
+	line-height: 1.4rem;
 }
 
 .typeahead-token {
@@ -25,8 +26,8 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	background: #35f;
 	color: white;
 	line-height: 1.2rem;
-	margin-right: .2rem;
-	padding-left: .2rem;
+	margin-right: .3rem;
+	padding-left: .3rem;
 	font-size: .8rem;
 }
 
@@ -34,7 +35,7 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	display:inline-block;
 	color: white;
 	text-decoration: none;
-	margin-left: .2rem;
+	margin-left: .3rem;
 	background: #13c;
 	height: 1.2rem;
 	width: 1.2rem;
@@ -80,6 +81,10 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	padding: .5em;
 	color: inherit;
 	border: 0 none;
+
+	&:hover {
+		background: #35f1;
+	}
 }
 `;
 
