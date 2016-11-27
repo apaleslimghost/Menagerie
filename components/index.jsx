@@ -10,6 +10,11 @@ import SpellSelectorContainer from './selector.jsx';
 injectGlobal`
 * { box-sizing: border-box; }
 
+@page {
+	size: auto;
+	margin: 0;
+}
+
 body, html {
 	margin: 0;
 
@@ -41,13 +46,12 @@ const ListContainer = observe(({spells}, {subscribe, dispatch}) =>
 		spells={getKeys(subscribe('spells').sort(), spells)}
 	/>);
 
-const ColumnWrapper = styled.div`
-display: flex;
-`;
+const ColumnWrapper = styled.div``;
 
 const ListColumn = styled.div`
 padding: 1em;
 width: ${({width}) => `${100 * width}vw`};
+float: left;
 
 @media screen {
 	max-height: 100vh;
@@ -56,11 +60,11 @@ width: ${({width}) => `${100 * width}vw`};
 `;
 
 export default () => <ColumnWrapper>
-	<ListColumn width={2/3}>
+	<ListColumn width={3/5}>
 		<SpellSelectorContainer spells={spells} />
 		<ListContainer spells={spells} />
 	</ListColumn>
-	<ListColumn width={1/3}>
+	<ListColumn width={2/5}>
 		<SpellSelectorContainer spells={spells} />
 		<ListContainer spells={spells} />
 	</ListColumn>
