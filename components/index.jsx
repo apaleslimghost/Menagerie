@@ -11,7 +11,7 @@ const get = obj => key => obj[key];
 const getKeys = (keys, obj) => keys.map(get(obj));
 
 const ListContainer = observe(({spells}, {subscribe}) =>
-	<List spells={getKeys(subscribe('spells'), spells)} />
+	<List spells={getKeys(subscribe('spells').sort(), spells)} />
 );
 
 const SpellSelectorContainer = observe(({spells}, {subscribe, dispatch}) => {
