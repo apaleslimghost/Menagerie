@@ -30,6 +30,33 @@ const renderSaves = monster => stats.reduce((saves, stat) => {
 	return saves;
 }, []).join(', ');
 
+const skillNames = [
+	'Athletics',
+	'Acrobatics',
+	'Stealth',
+	'Arcana',
+	'History',
+	'Investigation',
+	'Nature',
+	'Religion',
+	'Insight',
+	'Medicine',
+	'Perception',
+	'Survival',
+	'Deception',
+	'Intimidation',
+	'Performance',
+	'Persuasion',
+]
+
+const renderSkills = monster => skillNames.reduce((skills, skill) => {
+	if(monster[skill.toLowerCase()]) {
+		skills.push(`${skill} ${formatModifier(monster[skill.toLowerCase()])}`);
+	}
+
+	return skills;
+}, []).join(', ');
+
 const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
 	<Card>
 		<Title>{monster.name}</Title>
@@ -44,15 +71,21 @@ const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
 		</dl>
 
 		<dl>
-			{stats.map(stat => <div>
+			{stats.map(stat => <div key={stat}>
 				<Stat>{abbreviateStat(stat)}</Stat>
 				<dd>{monster[stat]} ({mod(monster[stat])})</dd>
 			</div>)}
 		</dl>
 
 		<dl>
-			<dt>Saving throws</dt>
-			<dd>{renderSaves(monster)}</dd>
+			{renderSaves(monster) && <div>
+				<dt>Saving throws</dt>
+				<dd>{renderSaves(monster)}</dd>
+			</div>}
+			{renderSkills(monster) && <div>
+				<dt>Skills</dt>
+				<dd>{renderSkills(monster)}</dd>
+			</div>}
 		</dl>
 	</Card>
 </ThemeProvider>;
