@@ -2,10 +2,14 @@ import React from 'react';
 import {observe} from '../store';
 import styled, {injectGlobal} from 'styled-components';
 
-import List from './list.jsx';
 import spells from '../spells';
+import monsters from '../monsters';
+
+import CardList from './list.jsx';
 import {getKeys} from './obj';
-import SpellSelectorContainer from './selector.jsx';
+import SelectorContainer from './selector.jsx';
+import SpellCard from './spellcard.jsx';
+import MonsterCard from './monstercard.jsx';
 
 injectGlobal`
 * { box-sizing: border-box; }
@@ -41,9 +45,10 @@ a {
 }
 `;
 
-const ListContainer = observe(({spells}, {subscribe, dispatch}) =>
-	<List
-		spells={getKeys(subscribe('spells').sort(), spells)}
+const ListContainer = observe(({data, storeKey, card}, {subscribe, dispatch}) =>
+	<CardList
+		card={card}
+		data={getKeys(subscribe(storeKey).sort(), data)}
 	/>);
 
 const ColumnWrapper = styled.div``;
@@ -54,18 +59,18 @@ width: ${({width}) => `${100 * width}vw`};
 float: left;
 
 @media screen {
-	max-height: 100vh;
+	height: 100vh;
 	overflow-y: auto;
 }
 `;
 
 export default () => <ColumnWrapper>
 	<ListColumn width={3/5}>
-		<SpellSelectorContainer spells={spells} />
-		<ListContainer spells={spells} />
+		<SelectorContainer data={monsters} storeKey='monsters' placeholder='Search for a monster…' />
+		<ListContainer data={monsters} storeKey='monsters' card={MonsterCard} />
 	</ListColumn>
 	<ListColumn width={2/5}>
-		<SpellSelectorContainer spells={spells} />
-		<ListContainer spells={spells} />
+		<SelectorContainer data={spells} storeKey='spells' placeholder='Search for a spell…' />
+		<ListContainer data={spells} storeKey='spells' card={SpellCard} />
 	</ListColumn>
 </ColumnWrapper>

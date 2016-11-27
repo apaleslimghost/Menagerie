@@ -92,28 +92,27 @@ const StyledTokenizer = styled(WrapTokenizer)`
 }
 `;
 
-const SpellSelectorContainer = observe(({spells}, {subscribe, dispatch}) => {
+const SelectorContainer = observe(({data, storeKey, placeholder}, {subscribe, dispatch}) => {
 	let tokenizer;
 	return <StyledTokenizer
-		onClick={() => {console.log(tokenizer) ; tokenizer.focus()}}
-		options={notKeys(subscribe('spells'), spells)}
-		defaultSelected={getKeys(subscribe('spells'), spells)}
+		onClick={() => tokenizer.focus()}
+		options={notKeys(subscribe(storeKey), data)}
+		defaultSelected={getKeys(subscribe(storeKey), data)}
 		filterOption='name'
 		displayOption='name'
 		tokenizerRef={el => tokenizer = el}
-		inputProps={{size: 15}}
-		placeholder='Search for a spell...'
-		onTokenAdd={spell => {
+		placeholder={placeholder}
+		onTokenAdd={item => {
 			// workaround fmoo/react-typeahead#224
 			tokenizer.refs.typeahead.refs.entry.blur();
 			tokenizer.refs.typeahead.refs.entry.focus();
-			dispatch('spells', spells => addUniq(spells, spell.id));
+			dispatch(storeKey, data => addUniq(data, item.id));
 		}}
-		onTokenRemove={spell => {
+		onTokenRemove={item => {
 			tokenizer.refs.typeahead.refs.entry.focus();
-			dispatch('spells', spells => remove(spells, spell.id))
+			dispatch(storeKey, data => remove(data, item.id))
 		}}
 	/>;
 });
 
-export default SpellSelectorContainer;
+export default SelectorContainer;

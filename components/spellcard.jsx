@@ -116,7 +116,7 @@ padding: .1rem;
 }
 `;
 
-const SpellCard = ({spell}) => <Card>
+const SpellCard = ({item: spell}) => <Card>
 	<Title>{spell.name}</Title>
 	<School>{renderLevelAndSchool(spell)}</School>
 	<DefinitionList>
