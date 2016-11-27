@@ -34,9 +34,6 @@ font-family: -apple-system, BlinkMacSystemFont,
 `;
 
 export default () => <Wrapper>
-	<h1>Select spell</h1>
 	<SpellSelectorContainer spells={spells} />
-	<hr />
-	<h1>Spells</h1>
 	<ListContainer spells={spells} />
 </Wrapper>
