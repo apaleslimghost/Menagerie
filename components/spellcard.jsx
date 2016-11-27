@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router';
 import Markdown from './markdown.jsx';
 
 const renderTime = ({type, size}) => `${size} ${type}`;
@@ -55,7 +54,6 @@ class SpellCard extends React.Component {
 				}
 			</p>
 			<Markdown text={this.props.spell['original-description']} />
-			<Link to="/all-spells">back</Link>
 		</article>;
 	}
 }

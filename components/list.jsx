@@ -1,12 +1,10 @@
 import React from 'react';
 import map from 'lodash.map';
+import Card from './spellcard.jsx';
 
-const List = ({spells, remove}) => <ul>
-	{map(spells, spell => <li key={spell.id}>
-		{spell.name}
-		{remove && <button onClick={() => remove(spell)}>✖️</button>}
-	</li>)}
-</ul>;
+const List = ({spells, remove}) => <div>
+	{map(spells, spell => <div key={spell.id}><Card spell={spell} /><hr/></div>)}
+</div>;
 
 export default List;
 
