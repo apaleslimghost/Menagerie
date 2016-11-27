@@ -1,10 +1,10 @@
 import React from 'react';
 import map from 'lodash.map';
 
-const List = ({spells, isSelected, select}) => <ul>
+const List = ({spells, remove}) => <ul>
 	{map(spells, spell => <li key={spell.id}>
-		{isSelected && <input disabled type='checkbox' checked={isSelected(spell)} />}
-		{select ? <a href='#' onClick={() => select(spell)}>{spell.name}</a> : spell.name}
+		{spell.name}
+		{remove && <button onClick={() => remove(spell)}>✖️</button>}
 	</li>)}
 </ul>;
 

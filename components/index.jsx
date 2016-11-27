@@ -12,16 +12,27 @@ const get = obj => key => obj[key];
 const getKeys = (keys, obj) => keys.map(get(obj));
 const values = obj => Object.keys(obj).map(get(obj));
 
-const ListContainer = observe(({spells}, {subscribe}) =>
-	<List spells={getKeys(subscribe('spells').sort(), spells)} />
-);
+const asSet = fn => (arr, ...args) => {
+	const set = new Set(arr);
+	fn(set, ...args);
+	return Array.from(set);
+};
+const addUniq = asSet((a, x) => a.add(x));
+const remove = asSet((a, x) => a.delete(x));
+
+const ListContainer = observe(({spells}, {subscribe, dispatch}) =>
+	<List
+		spells={getKeys(subscribe('spells').sort(), spells)}
+		remove={spell => dispatch('spells', spells => remove(spells, spell.id))}
+	/>);
 
 const SpellSelectorContainer = observe(({spells}, {dispatch}) =>
 	<Typeahead
 		options={values(spells)}
 		filterOption='name'
 		displayOption='name'
-		onOptionSelected={spell => dispatch('spells', spells => Array.from((new Set(spells)).add(spell.id)))}
+		maxVisible={10}
+		onOptionSelected={spell => dispatch('spells', spells => addUniq(spells, spell.id))}
 		showOptionsWhenEmpty={true}
 	/>);
 
