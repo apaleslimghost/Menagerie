@@ -11,8 +11,11 @@ injectGlobal`
 * { box-sizing: border-box; }
 
 body, html {
-	overflow: hidden;
 	margin: 0;
+
+	@media screen {
+		overflow: hidden;
+	}
 }
 
 body {
@@ -43,10 +46,11 @@ display: flex;
 `;
 
 const ListColumn = styled.div`
+padding: 1em;
+width: ${({width}) => `${100 * width}vw`};
+
 @media screen {
-	padding: 1em;
 	max-height: 100vh;
-	width: ${({width}) => `${100 * width}vw`};
 	overflow-y: auto;
 }
 `;
