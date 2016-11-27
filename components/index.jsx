@@ -1,18 +1,39 @@
 import React from 'react';
-import {Router, Route} from 'react-router';
-import {syncedHistory} from '../store';
+import connect from '../store';
+import {createObserve} from 'enviante-react';
 
-import SpellPage from './spellpage.jsx';
 import List from './list.jsx';
-import FilteredSpells from './filtered-spells.jsx';
-
 import spells from '../spells';
 
-const withProps = (Component, moreProps) => props => <Component {...moreProps} {...props} />;
+const observe = createObserve(connect);
 
-export default () => <Router history={syncedHistory}>
-	<Route path="/" component={FilteredSpells} />
-	<Route path="/all-spells" component={withProps(List, {spells})}/>
-	<Route path="/spell/:spellid" component={withProps(SpellPage, {spells})}/>
-</Router>;
+const get = obj => key => obj[key];
+const getKeys = (keys, obj) => keys.map(get(obj));
 
+const ListContainer = observe(({spells}, {subscribe}) =>
+	<List spells={getKeys(subscribe('spells'), spells)} />
+);
+
+const SpellSelectorContainer = observe(({spells}, {subscribe, dispatch}) => {
+	const spellList = subscribe('spells');
+	return <List
+		spells={spells}
+		isSelected={spell => spellList.includes(spell.id)}
+		select={spell => dispatch('spells', spellList => {
+			const set = new Set(spellList);
+			if(set.has(spell.id)) {
+				set.delete(spell.id);
+			} else {
+				set.add(spell.id);
+			}
+			return Array.from(set);
+		})} />
+});
+
+export default () => <div>
+	<h1>Selected spells</h1>
+	<ListContainer spells={spells} />
+	<hr />
+	<h1>All spells</h1>
+	<SpellSelectorContainer spells={spells} />
+</div>

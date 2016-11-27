@@ -1,17 +1,10 @@
-import {createStore, combineReducers} from 'redux';
-import {browserHistory} from 'react-router';
-import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
+import createStore from 'enviante';
+import {read, write} from '@quarterto/enviante-localstorage';
 
-import * as reducers from './reducers';
+const connect = createStore({
+	spells: read('spells', [])
+});
 
-const store = createStore(
-	combineReducers({
-			...reducers,
-		routing: routerReducer
-	}),
-	{},
-	window.devToolsExtension ? window.devToolsExtension() : a => a
-);
+connect(write('spells', 'spells', []));
 
-export const syncedHistory = syncHistoryWithStore(browserHistory, store);
-export default store;
+export default connect;

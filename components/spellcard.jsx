@@ -19,7 +19,7 @@ const renderArea = ({type, size, text}) =>
 	  type === 'objects-less-than' ? `Up to ${size} objects`
 	: type === 'creatures-less-than' ? `Up to ${size} objects`
 	: type === 'unknown' ? text
-	: renderTime({type, size});
+	: renderDistance({type, size});
 
 const renderRange = ({range, 'target-area': targetArea}) =>
 	`${renderDistance(range)}${targetArea ? ` (${renderArea(targetArea)})` : ''}`
