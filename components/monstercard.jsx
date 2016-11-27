@@ -1,21 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import {Title, Card} from './styled.jsx';
+import {ThemeProvider} from 'styled-components';
+import {redCard} from './themes';
 
-const Card = styled.article`
-max-width: 30em;
-border: .4em solid #911;
-border-radius: .4em;
-`;
-
-const Title = styled.h2`
-font-family: Georgia;
-font-weight: normal;
-margin: .2rem 0;
-text-align: center;
-`;
-
-const MonsterCard = ({item: monster}) => <Card>
-	<Title>{monster.name}</Title>
-</Card>;
+const MonsterCard = ({item: monster}) => <ThemeProvider theme={redCard}>
+	<Card>
+		<Title>{monster.name}</Title>
+	</Card>
+</ThemeProvider>;
 
 export default MonsterCard;
