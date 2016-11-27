@@ -105,9 +105,15 @@ const School = styled.h3`
 font-family: Georgia;
 margin: 0;
 text-align: center;
-background: #d90;
 font-size: .8rem;
 padding: .1rem;
+
+&:before {
+	content: '';
+	display: block;
+	border-top: 1.3rem solid #d90;
+	margin: 0rem -2px -1.1rem;
+}
 `;
 
 const SpellCard = ({spell}) => <Card>

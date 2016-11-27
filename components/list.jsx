@@ -8,6 +8,7 @@ list-style: none;
 padding: 0;
 `;
 const Item = styled.li`
+display: inline-block;
 margin-bottom: 1rem;
 `;
 
