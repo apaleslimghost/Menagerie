@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import config from './webpack.config.js';
+import config from './webpack.config.babel.js';
 
 const server = new WebpackDevServer(webpack(config), {
 	hot: true,

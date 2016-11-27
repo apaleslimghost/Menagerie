@@ -22,7 +22,7 @@ export default {
 		'./index.jsx'
 	],
 	output: {
-		path: require('path').resolve('build'),
+		path: require('path').resolve('build/static'),
 		filename: 'bundle.js',
 		publicPath: '/static/'
 	},

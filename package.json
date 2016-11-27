@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "babel-node server"
+    "start": "babel-node server",
+    "build": "webpack && cp index.html build"
   },
   "devDependencies": {
     "babel": "^6.5.2",
