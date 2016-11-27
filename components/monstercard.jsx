@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Card = styled.article`
 max-width: 30em;
-border: .4em solid #d90;
+border: .4em solid #911;
 border-radius: .4em;
 `;
 
