@@ -8,7 +8,7 @@ list-style: none;
 padding: 0;
 `;
 const Item = styled.li`
-border-bottom: 1px solid #0002;
+margin-bottom: 1rem;
 `;
 
 const SpellList = ({spells, remove}) => <List>
