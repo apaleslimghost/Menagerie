@@ -15,6 +15,7 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	border: 1px solid #0003;
 	border-radius: 3px;
 	padding: .2rem;
+	cursor: text;
 }
 
 .typeahead-token {
@@ -38,6 +39,7 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	height: 1.2rem;
 	width: 1.2rem;
 	text-align: center;
+	border: 0 none;
 	border-bottom-right-radius: 2px;
 	border-top-right-radius: 2px;
 }
@@ -77,6 +79,7 @@ const StyledTokenizer = styled(WrapTokenizer)`
 	display: block;
 	padding: .5em;
 	color: inherit;
+	border: 0 none;
 }
 `;
 

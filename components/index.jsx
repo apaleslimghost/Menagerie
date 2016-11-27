@@ -13,6 +13,11 @@ injectGlobal`
 a {
 	color: #00dabc;
 	text-decoration: none;
+
+	&:hover {
+		border-style: dotted;
+		border-bottom-width: 1px;
+	}
 }
 `;
 
