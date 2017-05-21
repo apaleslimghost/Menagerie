@@ -3,7 +3,6 @@ import {observe} from '../store';
 import styled, {injectGlobal} from 'styled-components';
 
 import spells from '../spells';
-import monsters from '../monsters';
 
 import CardList from './list.jsx';
 import {getKeys, asSet} from './obj';
@@ -11,6 +10,7 @@ import SelectorContainer from './selector.jsx';
 import SpellCard from './spellcard.jsx';
 import MonsterCard from './monstercard.jsx';
 import parseSpellcasting from './parse-spellcasting';
+import Import from './import.jsx'; // yo dawg
 
 injectGlobal`
 * { box-sizing: border-box; }
@@ -29,9 +29,9 @@ body, html {
 }
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, 
-		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
-		"Fira Sans", "Droid Sans", "Helvetica Neue", 
+	font-family: -apple-system, BlinkMacSystemFont,
+		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+		"Fira Sans", "Droid Sans", "Helvetica Neue",
 		sans-serif;
 }
 
@@ -80,15 +80,16 @@ const dispatchIfSpells = (dispatch, fn) => monster => {
 	}
 }
 
-export default observe((_, {dispatch}) => <ColumnWrapper>
+export default observe((_, {dispatch, subscribe}) => <ColumnWrapper>
 	<ListColumn width={3/5}>
 		<SelectorContainer
-			data={monsters}
+			data={subscribe('monsterList')}
 			storeKey='monsters'
 			placeholder='Search for a monster…'
 			onAdd={dispatchIfSpells(dispatch, addUniqAll)}
 			onRemove={dispatchIfSpells(dispatch, removeAll)} />
-		<ListContainer data={monsters} storeKey='monsters' card={MonsterCard} />
+		<Import onImport={data => dispatch('monsterList', () => data)} exportData={subscribe('monsterList')} />
+		<ListContainer data={subscribe('monsterList')} storeKey='monsters' card={MonsterCard} />
 	</ListColumn>
 	<ListColumn width={2/5}>
 		<SelectorContainer data={spells} storeKey='spells' placeholder='Search for a spell…' />
