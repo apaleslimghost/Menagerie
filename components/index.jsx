@@ -46,10 +46,10 @@ a {
 }
 `;
 
-const ListContainer = observe(({data, storeKey, card}, {subscribe, dispatch}) =>
+const ListContainer = observe(({data, dataKey, storeKey, card}, {subscribe, dispatch}) =>
 	<CardList
 		card={card}
-		data={getKeys(subscribe(storeKey).sort(), data)}
+		data={getKeys(subscribe(storeKey).sort(), data || subscribe(dataKey))}
 	/>);
 
 const ColumnWrapper = styled.div``;
@@ -83,13 +83,13 @@ const dispatchIfSpells = (dispatch, fn) => monster => {
 export default observe((_, {dispatch, subscribe}) => <ColumnWrapper>
 	<ListColumn width={3/5}>
 		<SelectorContainer
-			data={subscribe('monsterList')}
+			data='monsterList'
 			storeKey='monsters'
 			placeholder='Search for a monster…'
 			onAdd={dispatchIfSpells(dispatch, addUniqAll)}
 			onRemove={dispatchIfSpells(dispatch, removeAll)} />
 		<Import onImport={data => dispatch('monsterList', () => data)} exportData={subscribe('monsterList')} />
-		<ListContainer data={subscribe('monsterList')} storeKey='monsters' card={MonsterCard} />
+		<ListContainer dataKey='monsterList' storeKey='monsters' card={MonsterCard} />
 	</ListColumn>
 	<ListColumn width={2/5}>
 		<SelectorContainer data={spells} storeKey='spells' placeholder='Search for a spell…' />
